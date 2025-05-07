@@ -1,0 +1,44 @@
+﻿@model DuplicateMVC.Models.ItemViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Original Item List</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    @foreach (var item in Model.OriginalItems)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <input type="submit" name="removeDuplicates" value="Remove Duplicate Values" class="btn btn-danger" />
+}
+
+@if (Model.ShowUpdated)
+{
+    <h2 class="mt-4">Updated Item List (After Removing Duplicates)</h2>
+    <table class="table table-success table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        @foreach (var item in Model.UpdatedItems)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </table>
+}
+
